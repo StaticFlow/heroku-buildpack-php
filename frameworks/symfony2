@@ -42,6 +42,8 @@ case "$1" in
         php app/console cache:warmup --env=prod --no-debug | indent
         chown -R nobody: app/cache app/cache/*
 
+        status "Changing the owner of the logs directory"
+        chown -R nobody: app/logs app/logs/*
 
         status "In-place replacement of $CACHE_DIR to $APP_DIR"
         find $CACHE_DIR/app/cache/prod -type f -exec sed -i "s@$CACHE_DIR@$APP_DIR@g" {} \; | indent
