@@ -40,6 +40,7 @@ case "$1" in
         status "Warming up cache"
         rm -rf app/cache/*
         php app/console cache:warmup --env=prod --no-debug | indent
+        chown -R nobody: app/cache app/cache/*
 
 
         status "In-place replacement of $CACHE_DIR to $APP_DIR"
