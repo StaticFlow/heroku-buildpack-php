@@ -40,6 +40,8 @@ case "$1" in
         status "Warming up cache"
         rm -rf app/cache/*
         php app/console cache:warmup --env=prod --no-debug | indent
+
+        status "Changing the owner of the cache directory"
         chown -R nobody: app/cache app/cache/*
 
         status "Changing the owner of the logs directory"
